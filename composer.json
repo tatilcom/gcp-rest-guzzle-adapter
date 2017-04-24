@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": ">=5.6",
-        "guzzlehttp/guzzle": "5.3",
+        "guzzlehttp/guzzle": "5.3.*",
         "firebase/php-jwt": "4.0"
     },
     "require-dev": {
@@ -21,6 +21,11 @@
         }
     },
     "license": "MIT",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    },
     "authors": [
         {
             "name": "Seyfi Aslan",
