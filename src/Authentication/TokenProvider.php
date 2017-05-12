@@ -47,13 +47,14 @@ class TokenProvider
 
     /**
      * @param Credential $credential
+     * @param bool $cache
      * @return array|mixed
      */
-    public function getToken(Credential $credential)
+    public function getToken(Credential $credential, $cache = true)
     {
         $key = $credential->createCacheKey();
 
-        $token = $this->cacheClient->get($key);
+        $token = $cache === true ? $this->cacheClient->get($key) : false;
 
         if (!$token) {
             $token = $this->tokenClient->post(

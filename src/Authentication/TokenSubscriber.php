@@ -46,7 +46,8 @@ class TokenSubscriber implements SubscriberInterface
      */
     public function onBefore(BeforeEvent $event)
     {
-        $this->setAuthorizationHeader($event->getRequest());
+        $token = $this->tokenProvider->getToken($this->credential);
+        $this->setAuthorizationHeader($event->getRequest(), $token);
     }
 
     /**
@@ -55,7 +56,9 @@ class TokenSubscriber implements SubscriberInterface
     public function onError(ErrorEvent $event)
     {
         if ($event->getResponse() != null && $event->getResponse()->getStatusCode() == 401) {
-            $request = $this->setAuthorizationHeader($event->getRequest());
+            $token = $this->tokenProvider->getToken($this->credential, false);
+
+            $request = $this->setAuthorizationHeader($event->getRequest(), $token);
 
             $newResponse = $event->getClient()->send($request);
 
@@ -65,12 +68,11 @@ class TokenSubscriber implements SubscriberInterface
 
     /**
      * @param RequestInterface $request
+     * @param array $token
      * @return RequestInterface
      */
-    protected function setAuthorizationHeader(RequestInterface $request)
+    protected function setAuthorizationHeader(RequestInterface $request, array $token)
     {
-        $token = $this->tokenProvider->getToken($this->credential);
-
         $request->setHeader(
             'Authorization',
             sprintf('%s %s', $token['token_type'], $token['access_token'])
