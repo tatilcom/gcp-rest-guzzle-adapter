@@ -17,6 +17,6 @@ class ApcuCache implements CacheInterface
      */
     public function set($key, $value)
     {
-        return apcu_add($key, $value);
+        return apcu_store($key, $value);
     }
 }
