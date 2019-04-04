@@ -23,13 +23,17 @@
     "license": "MIT",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "0.1.x-dev"
         }
     },
     "authors": [
         {
             "name": "Seyfi Aslan",
             "email": "seyfi.aslangecinen@metglobal.com"
+        },
+        {
+            "name": "Burak Bolat",
+            "email": "burak.bolat@metglobal.com"
         }
     ]
 }
