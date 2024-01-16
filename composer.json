@@ -1,5 +1,5 @@
 {
-    "name": "metglobal/gcp-rest-guzzle-adapter",
+    "name": "tatilcom/gcp-rest-guzzle-adapter",
     "description": "Simple Guzzle adapter to Google Cloud Platform REST endpoints",
     "type": "library",
     "require": {
